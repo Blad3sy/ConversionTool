@@ -1,4 +1,3 @@
-from posixpath import dirname
 import tkinter
 
 class Window:
@@ -27,10 +26,10 @@ class Window:
         return self.title
 
     def startWindow(self):
-        root = tkinter.Tk()
-        root.geometry(f"{self.width}x{self.height}")
-        root.title = self.title
-        root.mainloop()
+        Window.tk = tkinter.Tk()
+        Window.tk.geometry(f"{self.width}x{self.height}")
+        Window.tk.title(self.title)
+        Window.tk.mainloop()
 
 class Button:
 
@@ -38,6 +37,7 @@ class Button:
         self.height = None
         self.width = None
         self.label = None
+        self.container = None
     
     def setDimensions(self, height, width):
         self.height = height
@@ -55,8 +55,7 @@ class Button:
         self.label = labelText
     
     def getLabel(self):
-        return self.label
-    
+        return self.label   
+   
     def createButton(self):
-        button = Button(text = self.label, height = self.height, width = self.width)
-        button.mainloop()
+        button = tkinter.Button(text = self.label, width = self.width, height = self.height)

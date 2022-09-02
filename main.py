@@ -4,6 +4,7 @@ background = Window()
 button1 = Button()
 
 background.setDimensions(500, 500)
+background.setTitle("Test")
 background.startWindow()
 
 button1.setDimensions(100, 100)
