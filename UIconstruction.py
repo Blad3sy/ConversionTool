@@ -118,5 +118,5 @@ class Label:
         return self.text
 
     def createLabel(self):
-        self.label = tkinter.Label(self.parent, text=self.label, width=self.width, height=self.height)
+        self.label = tkinter.Label(self.parent, text=self.text, width=self.width, height=self.height)
         self.label.place(x=self.xloc, y=self.yloc) 
