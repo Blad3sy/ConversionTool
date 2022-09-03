@@ -114,9 +114,61 @@ class Label:
     def setText(self, inputText):
         self.text = inputText
     
-    def getLabel(self):
+    def getText(self):
         return self.text
 
     def createLabel(self):
         self.label = tkinter.Label(self.parent, text=self.text, width=self.width, height=self.height)
-        self.label.place(x=self.xloc, y=self.yloc) 
+        self.label.place(x=self.xloc, y=self.yloc)
+
+class dynamic_Label():
+
+    def __init__(self, parent):
+        self.height = None
+        self.width = None
+        self.text = None
+        self.xloc = None
+        self.yloc = None
+        self.parent = parent
+    
+    def setDimensions(self, height, width):
+        self.height = height
+        self.width = width
+
+    def getDimensions(self):
+        dimensionsDict = {
+            "Height": self.height,
+            "Width": self.width
+        }
+
+        return dimensionsDict
+
+    def setLocation(self, x, y):
+        self.xloc = x
+        self.yloc = y
+
+    def getLocation(self):
+        locationDict = {
+            "X": self.xloc,
+            "Y": self.yloc
+        }
+
+        return locationDict
+    
+    def setText(self, inputText):
+        self.text = inputText
+    
+    def getText(self):
+        return self.text
+    
+    def createLabel(self):
+        self.label = tkinter.Label(self.parent, text=self.text, width=self.width, height=self.height)
+        self.label.place(x=self.xloc, y=self.yloc)
+    
+    def controlDynamicUpdates(self, command):
+        if command:
+            print("Dynamic text updating enabled.")
+            while command:
+                self.label.config(text=self.text)
+        else:
+            print("Dynamic text updating disabled.")
