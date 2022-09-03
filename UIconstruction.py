@@ -1,4 +1,5 @@
 import tkinter
+import time
 
 class Window:
      
@@ -42,6 +43,7 @@ class Button:
         self.xloc = None
         self.yloc = None
         self.parent = parent
+        self.command = None
     
     def setDimensions(self, height, width):
         self.height = height
@@ -72,9 +74,15 @@ class Button:
     
     def getLabel(self):
         return self.label      
+
+    def setCommand(self, labelCommand):
+        self.command = labelCommand
+    
+    def getCommand(self):
+        return self.command     
    
     def createButton(self):
-        self.button = tkinter.Button(self.parent, text=self.label, width=self.width, height=self.height)
+        self.button = tkinter.Button(self.parent, text=self.label, width=self.width, height=self.height, command=self.command)
         self.button.place(x=self.xloc, y=self.yloc)
 
 class Label:
@@ -121,7 +129,7 @@ class Label:
         self.label = tkinter.Label(self.parent, text=self.text, width=self.width, height=self.height)
         self.label.place(x=self.xloc, y=self.yloc)
 
-class dynamic_Label():
+class dynamic_Label:
 
     def __init__(self, parent):
         self.height = None
@@ -130,6 +138,8 @@ class dynamic_Label():
         self.xloc = None
         self.yloc = None
         self.parent = parent
+        self.label = tkinter.Label(self.parent, text=self.text, width=self.width, height=self.height)
+    
     
     def setDimensions(self, height, width):
         self.height = height
@@ -161,14 +171,10 @@ class dynamic_Label():
     def getText(self):
         return self.text
     
-    def createLabel(self):
-        self.label = tkinter.Label(self.parent, text=self.text, width=self.width, height=self.height)
+    def updateDynamicLabel(self, text):
+        self.text = text
+        self.label.config(text=self.text)
+        
+    def createDynamicLabel(self):
+        self.label.config(text=self.text, width=self.width, height=self.height)
         self.label.place(x=self.xloc, y=self.yloc)
-    
-    def controlDynamicUpdates(self, command):
-        if command:
-            print("Dynamic text updating enabled.")
-            while command:
-                self.label.config(text=self.text)
-        else:
-            print("Dynamic text updating disabled.")
