@@ -29,4 +29,5 @@ button1.setCommand(lambda : dynamicLabel1.updateDynamicLabel("test2"))
 dynamicLabel1.createDynamicLabel()
 # label1.createLabel()
 button1.createButton()
+
 root.mainloop()
